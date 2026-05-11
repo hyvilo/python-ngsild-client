@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,7 +7,7 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-from ngsildclient.api.helper.subscription import SubscriptionBuilder
+from pyngsildclient.api.helper.subscription import SubscriptionBuilder
 
 NOTIF_URI = "http://tutorial:3000/subscription/low-stock-farm001-ngsild"
 

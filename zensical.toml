@@ -1,0 +1,27 @@
+[project]
+site_name = "Python NGSI-LD Client"
+site_url = "https://hyvilo-it-admin.github.io/python-ngsild-client/"
+repo_url = "https://github.com/hyvilo-it-admin/python-ngsild-client"
+repo_name = "hyvilo-it-admin/python-ngsild-client"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Installation" = "installation.md" },
+  { "Usage" = "usage.md" },
+  { "API Reference" = "api.md" },
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to light mode"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]

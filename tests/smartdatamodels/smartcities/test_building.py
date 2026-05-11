@@ -9,19 +9,20 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pkg_resources
 import json
+from datetime import time
+from pathlib import Path
 
 from geojson import Polygon
-from datetime import time
-from ngsildclient import Entity, PostalAddressBuilder, OpeningHoursBuilder
+
+from pyngsildclient.model.entity import Entity
+from pyngsildclient.model.helper.openinghours import OpeningHoursBuilder
+from pyngsildclient.model.helper.postal import PostalAddressBuilder
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(
-        __name__, f"data/building/{basename}.json"
-    )
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / "building" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 
@@ -32,13 +33,7 @@ def test_building():
     """
     polygon = Polygon([[(100, 0), (101, 0), (101, 1), (100, 1), (100, 0)]])
     e = Entity("Building", "building-a85e3da145c1")
-    e.addr(
-        PostalAddressBuilder()
-        .locality("London")
-        .postalcode("EC4N 8AF")
-        .street("25 Walbrook")
-        .build()
-    )
+    e.addr(PostalAddressBuilder().locality("London").postalcode("EC4N 8AF").street("25 Walbrook").build())
     e.prop("category", ["office"])
     e.gprop("containedInPlace", polygon)
     e.prop("dataProvider", "OperatorA").prop("description", "Office block")

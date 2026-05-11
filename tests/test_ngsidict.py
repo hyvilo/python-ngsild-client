@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,14 +7,14 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pytest
+from datetime import date, datetime, time
 
-from datetime import datetime, date, time
+import pytest
 from dateutil.tz import UTC
 from geojson import Point
 
-from ngsildclient.model.entity import Entity, mkprop
-from ngsildclient.model.ngsidict import NgsiDict
+from pyngsildclient.model.entity import Entity, mkprop
+from pyngsildclient.model.ngsidict import NgsiDict
 
 
 def test_type():

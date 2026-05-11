@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -10,14 +8,14 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 import logging
-import pytest
 
+import pytest
+from common import sample_entity
 from pytest_httpx import HTTPXMock
 
-from ngsildclient.model.entity import Entity
-from ngsildclient.api.asyn.client import AsyncClient
-from ngsildclient.api.batch import BatchResult
-from .common import sample_entity
+from pyngsildclient.api.asyn.client import AsyncClient
+from pyngsildclient.api.batch import BatchResult
+from pyngsildclient.model.entity import Entity
 
 logger = logging.getLogger(__name__)
 

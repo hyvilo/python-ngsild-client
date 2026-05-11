@@ -9,18 +9,18 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pkg_resources
 import json
+from pathlib import Path
 
 from geojson import MultiPoint
-from ngsildclient.model.entity import Entity
-from ngsildclient.model.constants import Rel
+
+from pyngsildclient.model.constants import Rel
+from pyngsildclient.model.entity import Entity
+
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(
-        __name__, f"data/network/{basename}.json"
-    )
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / "network" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 

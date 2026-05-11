@@ -1,0 +1,23 @@
+# Software Name: pyngsildclient
+# SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+# SPDX-License-Identifier: Apache 2.0
+#
+# This software is distributed under the Apache 2.0;
+# see the NOTICE file for more details.
+#
+# Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pyngsildclient.model.entity import Entity
+
+    from .client import Client
+
+
+class LinkFollower:
+    def __init__(self, client: Client):
+        self._client = client
+
+    def follow(self, urn: str) -> Entity:
+        return self._client.get(urn)

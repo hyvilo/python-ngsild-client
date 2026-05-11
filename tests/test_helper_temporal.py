@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -10,8 +8,10 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 from datetime import datetime
+
 from dateutil.tz import UTC
-from ngsildclient.api.helper.temporal import TemporalQuery, TimeProperty
+
+from pyngsildclient.api.helper.temporal import TemporalQuery, TimeProperty
 
 
 def test_build_temporal_query_before():

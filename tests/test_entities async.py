@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,15 +7,15 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pytest
 import logging
 
+import pytest
+from common import sample_entity
 from pytest_httpx import HTTPXMock
 from pytest_mock.plugin import MockerFixture
 
-from ngsildclient.api.asyn.client import AsyncClient
-from .common import sample_entity
-from ngsildclient.api.exceptions import (
+from pyngsildclient.api.asyn.client import AsyncClient
+from pyngsildclient.api.exceptions import (
     NgsiAlreadyExistsError,
     NgsiResourceNotFoundError,
     ProblemDetails,

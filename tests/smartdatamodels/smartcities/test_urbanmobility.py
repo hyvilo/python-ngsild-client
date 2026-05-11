@@ -9,20 +9,21 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pkg_resources
 import json
-
 from datetime import datetime
+from pathlib import Path
+
 from dateutil.tz import UTC
-from ngsildclient.model.entity import Entity
-from ngsildclient.model.helper.postal import PostalAddressBuilder
-from ngsildclient.model.helper.openinghours import OpeningHoursBuilder
-from ngsildclient.utils.urn import Urn
+
+from pyngsildclient.model.entity import Entity
+from pyngsildclient.model.helper.openinghours import OpeningHoursBuilder
+from pyngsildclient.model.helper.postal import PostalAddressBuilder
+from pyngsildclient.utils.urn import Urn
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(__name__, f"data/urbanmobility/{basename}.json")
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / "urbanmobility" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 

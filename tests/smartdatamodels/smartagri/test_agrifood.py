@@ -9,18 +9,15 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pkg_resources
 import json
+from pathlib import Path
 
-from ngsildclient.model.entity import *
-from ngsildclient.model.helper.postal import PostalAddressBuilder
+from pyngsildclient.model.entity import Entity
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(
-        __name__, f"data/agrifood/{basename}.json"
-    )
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / "agrifood" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 

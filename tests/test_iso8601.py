@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,12 +7,13 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pytest
+from datetime import date, datetime, time
 
-from datetime import datetime, date, time
+import pytest
 from dateutil.tz import UTC
-from ngsildclient.utils import iso8601
-from ngsildclient.model.constants import TemporalType
+
+from pyngsildclient.model.constants import TemporalType
+from pyngsildclient.utils import iso8601
 
 
 def test_from_datetime():

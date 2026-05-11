@@ -1,8 +1,0 @@
-sphinx
-pydata-sphinx-theme==0.9.0
-sphinx-autodoc-typehints
-geojson
-httpx
-aiofiles
-rich
-isodate

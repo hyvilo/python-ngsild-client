@@ -1,0 +1,14 @@
+# Software Name: pyngsildclient
+# SPDX-FileCopyrightText: Copyright (c) 2021 Orange
+# SPDX-License-Identifier: Apache 2.0
+#
+# This software is distributed under the Apache 2.0;
+# see the NOTICE file for more details.
+#
+# Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
+
+from pyngsildclient import __version__
+
+
+def test_version():
+    assert __version__ == "0.6.0"

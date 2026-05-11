@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,20 +7,21 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-import pkg_resources
 import json
+from datetime import datetime
+from pathlib import Path
+
+from dateutil.tz import UTC
 from pytest import fixture
 
-from datetime import datetime
-from dateutil.tz import UTC
-from ngsildclient.model.entity import Entity, mkprop, mkgprop, mktprop, mkrel
-from ngsildclient.model.constants import MultAttrValue
-from ngsildclient.model.helper.postal import PostalAddressBuilder
+from pyngsildclient.model.constants import MultAttrValue
+from pyngsildclient.model.entity import Entity, mkgprop, mkprop, mkrel, mktprop
+from pyngsildclient.model.helper.postal import PostalAddressBuilder
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(__name__, f"data/{basename}.json")
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 
@@ -156,7 +155,7 @@ def test_air_quality_from_dict(expected_air_quality):
 
 
 def test_air_quality_from_json_file(expected_air_quality):
-    filename = pkg_resources.resource_filename(__name__, "data/air_quality.json")
+    filename = str(Path(__file__).parent.resolve() / "data" / "air_quality.json")
     e = Entity.load(filename)
     assert e.to_dict() == expected_air_quality
 

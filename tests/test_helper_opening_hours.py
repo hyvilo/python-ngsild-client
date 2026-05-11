@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -11,7 +9,7 @@
 
 from datetime import time
 
-from ngsildclient.model.helper.openinghours import (
+from pyngsildclient.model.helper.openinghours import (
     WEEK,
     OpeningHoursBuilder,
 )

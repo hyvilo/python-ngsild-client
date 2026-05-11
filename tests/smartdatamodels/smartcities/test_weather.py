@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from pathlib import Path
 
 # Software Name: ngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
@@ -8,19 +9,13 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
-
-import pkg_resources
-import json
-
-from ngsildclient.model.entity import *
-from ngsildclient.model.helper.postal import PostalAddressBuilder
+from pyngsildclient.model.entity import *
+from pyngsildclient.model.helper.postal import PostalAddressBuilder
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(
-        __name__, f"data/weather/{basename}.json"
-    )
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / "weather" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 
@@ -51,13 +46,7 @@ def test_weatherobserved():
     e.prop("stationName", "Valladolid")
 
     builder = PostalAddressBuilder()
-    address = (
-        builder.street("C/ La Pereda 14")
-        .locality("Santander")
-        .region("Cantabria")
-        .country("Spain")
-        .build()
-    )
+    address = builder.street("C/ La Pereda 14").locality("Santander").region("Cantabria").country("Spain").build()
     e.prop("address", address)
 
     builder = PostalAddressBuilder()

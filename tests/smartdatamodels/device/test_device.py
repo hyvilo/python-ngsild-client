@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Software Name: ngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
@@ -8,16 +6,15 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
-
-import pkg_resources
 import json
+from pathlib import Path
 
-from ngsildclient.model.entity import *
+from pyngsildclient.model.entity import Entity
 
 
 def expected_dict(basename: str) -> dict:
-    filename: str = pkg_resources.resource_filename(__name__, f"data/{basename}.json")
-    with open(filename, "r") as fp:
+    filename: str = Path(__file__).parent.resolve() / "data" / f"{basename}.json"
+    with open(filename) as fp:
         expected = json.load(fp)
     return expected
 

@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -10,8 +8,10 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 from datetime import datetime
+
 from dateutil.tz import UTC
-from ngsildclient.api.temporal import _troes_to_dfdict
+
+from pyngsildclient.api.temporal import _troes_to_dfdict
 
 troes_1entity_1attr_2measures = [
     {

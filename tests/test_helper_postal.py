@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-# Software Name: ngsildclient
+# Software Name: pyngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
 #
@@ -9,7 +7,7 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
-from ngsildclient.model.helper.postal import PostalAddressBuilder
+from pyngsildclient.model.helper.postal import PostalAddressBuilder
 
 
 def test_build_postal_address():
