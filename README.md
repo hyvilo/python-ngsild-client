@@ -290,7 +290,7 @@ package index](https://pypi.org/project/ngsildclient).
 
 ## Installation
 
-**pyngsildclient** requires Python 3.9+.
+**pyngsildclient** requires Python 3.12+.
 
 ```sh
 pip install pyngsildclient
