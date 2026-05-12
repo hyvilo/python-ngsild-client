@@ -162,7 +162,7 @@ class NgsiDict(Cut, MutableMapping):
         userdata: Optional["NgsiDict"] = None,
         escape: bool = False,
         attrname: str | None = None,
-    ) -> AttrPropValue:
+    ) -> "AttrPropValue":
         from pyngsildclient.model.attr.prop import AttrPropValue
 
         if isinstance(value, MultAttrValue):
@@ -220,7 +220,7 @@ class NgsiDict(Cut, MutableMapping):
         datasetid: str | None = None,
         observedat: str | datetime | None = None,
         attrname: str | None = None,
-    ) -> AttrRelValue:
+    ) -> "AttrRelValue":
         from pyngsildclient.model.attr.rel import AttrRelValue
 
         if isinstance(value, MultAttrValue):
