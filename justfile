@@ -12,15 +12,15 @@ alias tc := type-check
 
 # Type check the project with ty
 type-check:
-    uv run --python=3.14 ty check .
+    uv run --python=3.14 ty check ./src
 
 # Type check with concise output (one diagnostic per line)
 type-check-concise:
-    uv run --python=3.14 ty check --output-format=concise .
+    uv run --python=3.14 ty check --output-format=concise ./src
 
 # Type check in watch mode (rechecks on file changes)
 type-check-watch:
-    uv run --python=3.14 ty check --watch .
+    uv run --python=3.14 ty check --watch ./src
 
 # Run all the formatting, linting, and testing commands
 qa:

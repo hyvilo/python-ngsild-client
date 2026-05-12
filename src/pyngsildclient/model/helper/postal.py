@@ -15,12 +15,12 @@ from typing import Self
 class PostalAddress:
     """A PostalAddress as defined here : https://schema.org/PostalAddress."""
 
-    country: str = None
-    locality: str = None
-    region: str = None
-    pobox: str = None
-    postalcode: str = None
-    streetaddress: str = None
+    country: str | None = None
+    locality: str | None = None
+    region: str | None = None
+    pobox: str | None = None
+    postalcode: str | None = None
+    streetaddress: str | None = None
 
     def to_dict(self):
         d = {}

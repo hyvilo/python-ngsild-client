@@ -31,7 +31,7 @@ class Settings:
     strict: bool = False  # for future use
     autoescape: bool = True  # for future use
     f_print: Callable = print
-    follower: "LinkFollower" = None
+    follower: typing.Optional["LinkFollower"] = None
 
     def __post_init__(self):
         if is_interactive():

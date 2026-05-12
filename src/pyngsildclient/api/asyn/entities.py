@@ -49,7 +49,7 @@ class Entities:
     async def get(
         self,
         eid: str | Entity,
-        ctx: str = None,
+        ctx: str | None = None,
         asdict: bool = False,
         **kwargs,
     ) -> Entity:
@@ -99,10 +99,10 @@ class Entities:
     @rfc7807_error_handle_async
     async def _query(
         self,
-        type: str = None,
-        q: str = None,
-        gq: str = None,
-        ctx: str = None,
+        type: str | None = None,
+        q: str | None = None,
+        gq: str | None = None,
+        ctx: str | None = None,
         limit: int = 0,
         offset: int = 0,
         **kwargs,
@@ -136,7 +136,9 @@ class Entities:
         return [Entity.from_dict(entity) for entity in entities]
 
     @rfc7807_error_handle_async
-    async def count(self, type: str = None, q: str = None, gq: str = None, ctx: str = None, **kwargs) -> int:
+    async def count(
+        self, type: str | None = None, q: str | None = None, gq: str | None = None, ctx: str | None = None, **kwargs
+    ) -> int:
         params = {"limit": 0, "count": "true"}
         if type is None and q is None:
             raise ValueError("Must indicate at least a type or a query string")

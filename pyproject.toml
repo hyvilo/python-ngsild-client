@@ -20,17 +20,18 @@ classifiers = [
 ]
 license = {text = "Apache 2.0"}
 dependencies = [
-  "typer",
-  "rich",
-  "geojson",
-  "requests",
-  "httpx",
-  "aiofiles",
-  "isodate",
-  "networkx",
-  "scalpl",
-  "python-dateutil",
-  "multipledispatch",
+    "typer",
+    "rich",
+    "geojson",
+    "requests",
+    "httpx",
+    "aiofiles",
+    "isodate",
+    "networkx",
+    "scalpl",
+    "plotly",
+    "python-dateutil",
+    "multipledispatch",
 ]
 requires-python = ">= 3.12"
 

@@ -70,7 +70,7 @@ class Urn:
         """
         ...
 
-    def __init__(self, fqn: str = None, *, nss: str = None, nid: str = DEFAULT_NID) -> None:
+    def __init__(self, fqn: str | None = None, *, nss: str | None = None, nid: str = DEFAULT_NID) -> None:
         self.scheme = "urn"
         if nss and nid:
             self.nss = nss

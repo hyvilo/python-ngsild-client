@@ -37,10 +37,10 @@ class TemporalAlt:
     def _query(
         self,
         query: dict,
-        ctx: str = None,
+        ctx: str | None = None,
         lastn: int = 0,
         pagesize: int = 0,  # default broker pageSize
-        pageanchor: str = None,
+        pageanchor: str | None = None,
     ) -> TemporalResult:
         params = {}
         if query.get("type") != "Query":
@@ -65,7 +65,7 @@ class TemporalAlt:
         self,
         query: dict | Path,
         *,
-        ctx: str = None,
+        ctx: str | None = None,
         limit: int = 5,
         as_dataframe: bool = False,
     ) -> list[dict]:
@@ -84,7 +84,7 @@ class TemporalAlt:
         self,
         query: dict | Path,
         *,
-        ctx: str = None,
+        ctx: str | None = None,
         lastn: int = 0,
         pagesize: int = 0,
         as_dataframe: bool = False,
@@ -110,7 +110,7 @@ class TemporalAlt:
         self,
         query: dict | Path,
         *,
-        ctx: str = None,
+        ctx: str | None = None,
         pagesize: int = 0,
     ) -> Generator[list[dict], None, None]:
         if isinstance(query, Path):
@@ -128,7 +128,7 @@ class TemporalAlt:
         self,
         query: dict | Path,
         *,
-        ctx: str = None,
+        ctx: str | None = None,
         pagesize: int = 0,
         callback: Callable[[Entity], None],
     ) -> None:

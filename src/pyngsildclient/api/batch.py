@@ -140,7 +140,7 @@ class Batch:
         return r
 
     @rfc7807_error_handle
-    def _update(self, entities: Sequence[Entity], opt: Literal["noOverwrite"] = None) -> BatchResult:
+    def _update(self, entities: Sequence[Entity], opt: Literal["noOverwrite"] | None = None) -> BatchResult:
         params = {"options": opt} if opt else {}
         r = self._session.post(
             f"{self.url}/update/", data=json.dumps([e for e in entities], cls=NgsiEncoder), params=params

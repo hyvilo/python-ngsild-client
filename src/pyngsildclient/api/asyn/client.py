@@ -86,11 +86,11 @@ class AsyncClient:
         port_temporal: int = NGSILD_TEMPORAL_PORT,
         secure: bool = False,
         useragent: str = UA,
-        tenant: str = None,
+        tenant: str | None = None,
         overwrite: bool = False,
         ignore_errors: bool = False,
-        proxy: str = None,
-        custom_auth: AuthTypes = None,
+        proxy: str | None = None,
+        custom_auth: AuthTypes | None = None,
     ):
         """Create a Client instance to interact with the Context Broker.
 
@@ -228,7 +228,7 @@ class AsyncClient:
     async def get(
         self,
         entity: EntityOrId,
-        ctx: str = None,
+        ctx: str | None = None,
         asdict: bool = False,
         **kwargs,
     ) -> Entity:
@@ -376,7 +376,7 @@ class AsyncClient:
         return await self.batch.update(entities, overwrite=overwrite)
 
     async def query_head(
-        self, type: str = None, q: str = None, gq: str = None, ctx: str = None, n: int = 5
+        self, type: str | None = None, q: str | None = None, gq: str | None = None, ctx: str | None = None, n: int = 5
     ) -> list[Entity]:
         """Retrieve entities given its type and/or query string.
 
@@ -413,10 +413,10 @@ class AsyncClient:
 
     async def query(
         self,
-        type: str = None,
-        q: str = None,
-        gq: str = None,
-        ctx: str = None,
+        type: str | None = None,
+        q: str | None = None,
+        gq: str | None = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         max: int = 1_000_000,
     ) -> list[Entity]:
@@ -462,10 +462,10 @@ class AsyncClient:
 
     async def query_generator(
         self,
-        type: str = None,
-        q: str = None,
-        gq: str = None,
-        ctx: str = None,
+        type: str | None = None,
+        q: str | None = None,
+        gq: str | None = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         batch: bool = False,
     ) -> Generator[Entity, None, None]:
@@ -508,10 +508,10 @@ class AsyncClient:
 
     async def query_handle(
         self,
-        type: str = None,
-        q: str = None,
-        gq: str = None,
-        ctx: str = None,
+        type: str | None = None,
+        q: str | None = None,
+        gq: str | None = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         *,
         callback: Callable[[Entity], None],
@@ -541,7 +541,7 @@ class AsyncClient:
         async for entity in self.query_generator(type, q, gq, ctx, limit, False):
             callback(entity)
 
-    async def count(self, type: str = None, q: str = None, gq: str = None) -> int:
+    async def count(self, type: str | None = None, q: str | None = None, gq: str | None = None) -> int:
         """Return number of entities matching type and/or query string.
 
         Facade method for Entities.count().
@@ -570,7 +570,7 @@ class AsyncClient:
         """
         return await self.entities.count(type, q)
 
-    async def delete_where(self, type: str = None, q: str = None, **kwargs):
+    async def delete_where(self, type: str | None = None, q: str | None = None, **kwargs):
         """Batch delete entities matching type and/or query string.
 
         Parameters

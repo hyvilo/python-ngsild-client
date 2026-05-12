@@ -30,13 +30,13 @@ class Alt:
         self._client = client
         self._session = client.session
 
-    def count(self, query: dict | Path, ctx: str = None) -> int:
+    def count(self, query: dict | Path, ctx: str | None = None) -> int:
         if isinstance(query, Path):
             with open(query) as f:
                 query = json.load(f)
         return self._client.entities._count_alt(query, ctx)
 
-    def query_head(self, query: dict | Path, ctx: str = None, n: int = 5) -> list[Entity]:
+    def query_head(self, query: dict | Path, ctx: str | None = None, n: int = 5) -> list[Entity]:
         """Retrieve entities given its type and/or query string.
 
         Retrieve up to PAGINATION_LIMIT_MAX entities.
@@ -70,7 +70,7 @@ class Alt:
     def query(
         self,
         query: dict | Path,
-        ctx: str = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         max: int = 1_000_000,
     ) -> list[Entity]:
@@ -113,7 +113,7 @@ class Alt:
     def query_generator(
         self,
         query: dict | Path,
-        ctx: str = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         batch: bool = False,
     ) -> Generator[Entity, None, None]:
@@ -148,7 +148,7 @@ class Alt:
     def query_handle(
         self,
         query: dict | Path,
-        ctx: str = None,
+        ctx: str | None = None,
         limit: int = PAGINATION_LIMIT_MAX,
         *,
         callback: Callable[[Entity], None],

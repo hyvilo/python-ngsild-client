@@ -7,7 +7,7 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, Optional
 
 from .constants import AttrValue, MultAttrValue, NgsiDate, NgsiGeometry
 
@@ -44,7 +44,7 @@ class NgsiDict(Cut, MutableMapping):
     model.Entity
     """
 
-    def __init__(self, data: dict = None, name: str = None):
+    def __init__(self, data: dict | None = None, name: str | None = None):
         super().__init__(data)
         self.name = name
 
@@ -126,7 +126,7 @@ class NgsiDict(Cut, MutableMapping):
     def to_dict(self) -> dict:
         return self.data
 
-    def to_json(self, pattern: str = None, indent: int = None) -> str:
+    def to_json(self, pattern: str | None = None, indent: int = None) -> str:
         """Returns the dict in json format"""
         if pattern:
             pattern = pattern.lower()
@@ -156,12 +156,12 @@ class NgsiDict(Cut, MutableMapping):
         cls,
         value: Any,
         *,  # keyword-only arguments after this
-        datasetid: str = None,
-        observedat: str | datetime = None,
-        unitcode: str = None,
-        userdata: "NgsiDict" = None,
+        datasetid: str | None = None,
+        observedat: str | None | datetime = None,
+        unitcode: str | None = None,
+        userdata: Optional["NgsiDict"] = None,
         escape: bool = False,
-        attrname: str = None,
+        attrname: str | None = None,
     ) -> AttrPropValue:
         from pyngsildclient.model.attr.prop import AttrPropValue
 
@@ -180,9 +180,9 @@ class NgsiDict(Cut, MutableMapping):
         cls,
         value: tuple[float] | NgsiGeometry,
         *,  # keyword-only arguments after this
-        datasetid: str = None,
+        datasetid: str | None = None,
         observedat: str | datetime | None = None,
-        attrname: str = None,
+        attrname: str | None = None,
         precision: int = 6,
     ) -> AttrGeoValue:
         from pyngsildclient.model.attr.geo import AttrGeoValue
@@ -202,7 +202,7 @@ class NgsiDict(Cut, MutableMapping):
         cls,
         value: NgsiDate | None = None,
         *,  # keyword-only arguments after this
-        attrname: str = None,
+        attrname: str | None = None,
     ) -> AttrTemporalValue:
         from pyngsildclient.model.attr.temporal import AttrTemporalValue
 
@@ -217,9 +217,9 @@ class NgsiDict(Cut, MutableMapping):
         cls,
         value: str | list[str] | Entity | list[Entity],
         *,  # keyword-only arguments after this
-        datasetid: str = None,
+        datasetid: str | None = None,
         observedat: str | datetime | None = None,
-        attrname: str = None,
+        attrname: str | None = None,
     ) -> AttrRelValue:
         from pyngsildclient.model.attr.rel import AttrRelValue
 

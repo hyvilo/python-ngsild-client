@@ -57,7 +57,7 @@ class Entities:
     def get(
         self,
         entity: EntityOrId,
-        ctx: str = None,
+        ctx: str | None = None,
         asdict: bool = False,
         **kwargs,
     ) -> Entity:
@@ -108,7 +108,13 @@ class Entities:
 
     @rfc7807_error_handle
     def _query(
-        self, type: str = None, q: str = None, gq: str = None, ctx: str = None, limit: int = 0, offset: int = 0
+        self,
+        type: str | None = None,
+        q: str | None = None,
+        gq: str | None = None,
+        ctx: str | None = None,
+        limit: int = 0,
+        offset: int = 0,
     ) -> Sequence[Entity]:
         params = {}
         if limit != 0:
@@ -140,7 +146,7 @@ class Entities:
         return [Entity.from_dict(entity) for entity in entities]
 
     @rfc7807_error_handle
-    def _query_alt(self, query: dict, ctx: str = None, limit: int = 0, offset: int = 0) -> Sequence[Entity]:
+    def _query_alt(self, query: dict, ctx: str | None = None, limit: int = 0, offset: int = 0) -> Sequence[Entity]:
         if query.get("type") != "Query":
             raise NgsiJsonError("Wrong format. Expect JSON-LD Query data type")
         params = {}
@@ -158,7 +164,9 @@ class Entities:
         return [Entity.from_dict(entity) for entity in entities]
 
     @rfc7807_error_handle
-    def count(self, type: str = None, q: str = None, gq: str = None, ctx: str = None) -> int:
+    def count(
+        self, type: str | None = None, q: str | None = None, gq: str | None = None, ctx: str | None = None
+    ) -> int:
         params = {"limit": 0, "count": "true"}
         if type is None and q is None:
             raise ValueError("Must indicate at least a type or a query string")
@@ -183,7 +191,7 @@ class Entities:
         count = int(r.headers["NGSILD-Results-Count"])
         return count
 
-    def _count_alt(self, query: dict, ctx: str = None) -> int:
+    def _count_alt(self, query: dict, ctx: str | None = None) -> int:
         params = {"limit": 0, "count": "true"}
         if query.get("type") != "Query":
             raise NgsiJsonError("Wrong format. Expect JSON-LD Query data type")

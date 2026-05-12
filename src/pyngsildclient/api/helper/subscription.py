@@ -16,7 +16,7 @@ from pyngsildclient.model.constants import CORE_CONTEXT
 @dataclass
 class NotificationParams:
     uri: str
-    attrs: list[str] = None
+    attrs: list[str] | None = None
     format: str = "normalized"
 
     def to_dict(self) -> dict:
@@ -31,14 +31,14 @@ class NotificationParams:
 @dataclass
 class Subscription:
     notification: NotificationParams
-    id: str = None
+    id: str | None = None
     type: str = "Subscription"
-    name: str = None
-    description: str = None
-    entities: list[dict] = None  # id, idPattern, or type
+    name: str | None = None
+    description: str | None = None
+    entities: list[dict] | None = None  # id, idPattern, or type
     watched_attrs: list[str] = None
     # time_interval: int = 0
-    query: str = None
+    query: str | None = None
     # gquery: str = None
     # csf: str = None
     active: bool = True

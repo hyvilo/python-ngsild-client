@@ -29,7 +29,7 @@ class Console:
         self.console = console.Console() if is_interactive() else None
         self.verbose = verbose
 
-    def message(self, msg: str, *, color: str = None, lvl: MsgLvl = "info"):
+    def message(self, msg: str, *, color: str | None = None, lvl: MsgLvl = "info"):
         if not self.verbose:
             return
         if not self.console:

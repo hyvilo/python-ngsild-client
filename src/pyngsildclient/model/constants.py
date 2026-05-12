@@ -67,26 +67,26 @@ UTC = tz.UTC
 @dataclass
 class AttrValue:
     value: Any
-    datasetid: str = None  # MUST be set for multi-attributes properties
-    observedat: str | datetime = None
-    unitcode: str = None
+    datasetid: str | None = None  # MUST be set for multi-attributes properties
+    observedat: str | None | datetime = None
+    unitcode: str | None = None
     userdata: dict = field(default_factory=dict)
 
 
 @dataclass
 class MultAttrValue(Iterable[AttrValue]):
-    datasetid: str = None
-    observedat: str | datetime = None
-    unitcode: str = None
+    datasetid: str | None = None
+    observedat: str | None | datetime = None
+    unitcode: str | None = None
     userdata: dict = field(default_factory=dict)
     attrvalues: list[AttrValue] = field(default_factory=list)
 
     def add(
         self,
         value: Any,
-        datasetid: str = None,
-        observedat: str | datetime = None,
-        unitcode: str = None,
+        datasetid: str | None = None,
+        observedat: str | None | datetime = None,
+        unitcode: str | None = None,
         userdata: dict | None = None,
     ):
         userdata = userdata or dict()

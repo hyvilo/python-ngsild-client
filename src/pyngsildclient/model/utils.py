@@ -39,7 +39,7 @@ def guess_ngsild_type(attr: Mapping) -> Literal["Property", "GeoProperty", "Temp
         else:
             raise ValueError("Malformed NGSI-LD GeoProperty")
     if type == "Relationship":
-        object: str = attr.get("object")
+        object: str | None = attr.get("object")
         if object is not None and object.startswith("urn:ngsi-ld:"):
             return type
         else:

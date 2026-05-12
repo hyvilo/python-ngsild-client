@@ -31,7 +31,7 @@ class Contexts:
         self.url = url
 
     @rfc7807_error_handle
-    def list(self, pattern: str = None) -> dict | None:
+    def list(self, pattern: str | None = None) -> dict | None:
         r = self._session.get(f"{self.url}")
         contexts = r.json()
         if pattern is not None:
@@ -51,7 +51,7 @@ class Contexts:
         return bool(r)
 
     @rfc7807_error_handle
-    def delete(self, ctx: str, pattern: str = None) -> bool:
+    def delete(self, ctx: str, pattern: str | None = None) -> bool:
         if pattern is None:
             return self._delete(ctx)
         deleted = False

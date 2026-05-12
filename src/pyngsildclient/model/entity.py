@@ -426,9 +426,9 @@ class Entity:
         value: Any,
         *,  # keyword-only arguments after this
         nested: bool = False,
-        observedat: str | datetime = None,
-        datasetid: str = None,
-        unitcode: str = None,
+        observedat: str | None | datetime = None,
+        datasetid: str | None = None,
+        unitcode: str | None = None,
         userdata: NgsiDict = None,
         escape: bool = False,
     ) -> "Entity":
@@ -454,8 +454,8 @@ class Entity:
         value: NgsiGeometry,
         *,  # keyword-only arguments after this
         nested: bool = False,
-        datasetid: str = None,
-        observedat: str | datetime = None,
+        datasetid: str | None = None,
+        observedat: str | None | datetime = None,
         precision: int = 6,
     ) -> "Entity":
         property = NgsiDict.mkgprop(value, datasetid=datasetid, observedat=observedat, precision=precision)
@@ -498,8 +498,8 @@ class Entity:
         value: str | list[str] | Self | list[Self],
         *,  # keyword-only arguments after this
         nested: bool = False,
-        observedat: str | datetime = None,
-        datasetid: str = None,
+        observedat: str | None | datetime = None,
+        datasetid: str | None = None,
     ) -> "Entity":
         if nested and self._lastwasmulti:
             raise ValueError("Nesting multi-attribute is not allowed")
@@ -538,7 +538,7 @@ class Entity:
         """
         return self.root.to_dict()
 
-    def to_json(self, *args, pattern: str = None, **kwargs) -> str:
+    def to_json(self, *args, pattern: str | None = None, **kwargs) -> str:
         """Returns the entity as JSON.
 
         Returns
@@ -548,7 +548,7 @@ class Entity:
         """
         return self.root.to_json(*args, pattern=pattern, **kwargs)
 
-    def pprint(self, *args, pattern: str = None, **kwargs):
+    def pprint(self, *args, pattern: str | None = None, **kwargs):
         """Pretty-print the entity to the standard ouput."""
         globalsettings.f_print(self.to_json(*args, indent=2, pattern=pattern, **kwargs))
 

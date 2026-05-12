@@ -31,8 +31,8 @@ class ProblemDetails:
     title: str
     status: int
     detail: str
-    instance: str = None
-    extension: dict = None
+    instance: str | None = None
+    extension: dict | None = None
 
 
 class NgsiApiError(NgsiError):

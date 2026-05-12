@@ -49,7 +49,7 @@ class Subscriptions:
         return id_returned_from_broker
 
     @rfc7807_error_handle_async
-    async def list(self, pattern: str = None, ctx: str = CORE_CONTEXT) -> dict | None:
+    async def list(self, pattern: str | None = None, ctx: str = CORE_CONTEXT) -> dict | None:
         headers = {
             "Accept": "application/ld+json",
             # "Content-Type": None,

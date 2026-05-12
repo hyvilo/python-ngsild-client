@@ -90,7 +90,7 @@ class Batch:
         return r
 
     @rfc7807_error_handle_async
-    async def _update(self, entities: Sequence[Entity], opt: Literal["noOverwrite"] = None) -> BatchResult:
+    async def _update(self, entities: Sequence[Entity], opt: Literal["noOverwrite"] | None = None) -> BatchResult:
         headers = {"Content-Type": "application/ld+json"}
         params = {"options": opt} if opt else {}
         r = await self._session.post(

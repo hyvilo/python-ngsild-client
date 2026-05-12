@@ -136,7 +136,7 @@ def to_time(value: str) -> time:
     return isoparser().parse_isotime(value)
 
 
-def _from_string(value: str) -> tuple[str, TemporalType, datetime]:
+def _from_string(value: str) -> tuple[str, TemporalType, datetime | date | time]:
     """Guess the temporal date type from a given string.
 
     This function should not be called by the end user. It is used internally by the `parse()` function.
@@ -201,7 +201,7 @@ def to_string(dt: datetime | date | time) -> tuple[str, str]:
     return type, value
 
 
-def parse(value: datetime | date | time | str) -> tuple[str, TemporalType, datetime]:
+def parse(value: datetime | date | time | str) -> tuple[str, TemporalType, datetime | date | time]:
     """Guess the temporal date type from a given argument carrying a temporal information.
 
     This function is typically used to build a NGSI-LD Temporal Property or temporal metadata such as `observedAt`.
