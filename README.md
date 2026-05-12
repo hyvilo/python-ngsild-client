@@ -5,8 +5,8 @@
 pyngsildclient is a Python library dedicated to NGSI-LD.
 
 * [GitHub](https://github.com/hyvilo-it-admin/python-ngsild-client/) | [PyPI](https://pypi.org/project/python-ngsild-client/) | [Documentation](https://hyvilo-it-admin.github.io/python-ngsild-client/)
-* Created by [Hyvilo](https://www.hyvilo.eu/) | GitHub [@hyvilo-it-admin](https://github.com/hyvilo-it-admin) | PyPI [@hyvilo-it-admin](https://pypi.org/user/hyvilo-it-admin/)
-* MIT License
+* Forked from [https://github.com/Orange-OpenSource/python-ngsild-client](https://github.com/Orange-OpenSource/python-ngsild-client) by [Hyvilo](https://www.hyvilo.eu/) | GitHub [@hyvilo](https://github.com/hyvilo-it-admin) | PyPI [@hyvilo](https://pypi.org/user/hyvilo-it-admin/)
+* Apache 2.0 License
 
 ## Features
 
