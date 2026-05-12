@@ -7,9 +7,9 @@
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Literal, Optional
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union
 
-from .constants import AttrValue, MultAttrValue, NgsiDate, NgsiGeometry
+from .constants import AttrValue, MultAttrValue, NgsiDate
 
 if TYPE_CHECKING:
     from pyngsildclient.model.attr.geo import AttrGeoValue
@@ -17,6 +17,8 @@ if TYPE_CHECKING:
     from pyngsildclient.model.attr.rel import AttrRelValue
     from pyngsildclient.model.attr.temporal import AttrTemporalValue
     from pyngsildclient.model.entity import Entity
+
+    from .constants import NgsiGeometry
 
 import json
 from collections.abc import Mapping, MutableMapping
@@ -178,7 +180,7 @@ class NgsiDict(Cut, MutableMapping):
     @classmethod
     def mkgprop(
         cls,
-        value: tuple[float] | NgsiGeometry,
+        value: Union[tuple[float], "NgsiGeometry"],
         *,  # keyword-only arguments after this
         datasetid: str | None = None,
         observedat: str | datetime | None = None,
