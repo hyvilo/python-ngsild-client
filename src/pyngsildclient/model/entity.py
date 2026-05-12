@@ -336,7 +336,7 @@ class Entity:
     def follow(self, relname: str):
         from pyngsildclient.api.follow import LinkFollower
 
-        follower: LinkFollower = globalsettings.follower
+        follower: LinkFollower | None = globalsettings.follower
         if follower is None:
             raise ValueError("Follower not set in globalsettings")
         return follower.follow(self.root[relname]["object"])
@@ -508,7 +508,7 @@ class Entity:
         self._update_entity(name, property, nested)
         return self
 
-    def __eq__(self, other: "Entity"):
+    def __eq__(self, other: "Entity") -> bool:
         if other.__class__ is not self.__class__:
             return NotImplemented
         return self.root == other.root

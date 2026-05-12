@@ -128,7 +128,7 @@ class NgsiDict(Cut, MutableMapping):
     def to_dict(self) -> dict:
         return self.data
 
-    def to_json(self, pattern: str | None = None, indent: int = None) -> str:
+    def to_json(self, pattern: str | None = None, indent: int | None = None) -> str:
         """Returns the dict in json format"""
         if pattern:
             pattern = pattern.lower()

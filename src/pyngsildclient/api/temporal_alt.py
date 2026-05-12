@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 class TemporalAlt:
     """A wrapper for the NGSI-LD API temporal alternative endpoint."""
 
-    def __init__(self, client: Client, url_alt_temporal_query: str):
+    def __init__(self, client: "Client", url_alt_temporal_query: str):
         self._client = client
         self._session = client.session
         self.url_alt_temporal_query = url_alt_temporal_query
