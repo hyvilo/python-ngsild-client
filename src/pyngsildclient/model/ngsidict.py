@@ -205,7 +205,7 @@ class NgsiDict(Cut, MutableMapping):
         value: NgsiDate | None = None,
         *,  # keyword-only arguments after this
         attrname: str | None = None,
-    ) -> AttrTemporalValue:
+    ) -> "AttrTemporalValue":
         from pyngsildclient.model.attr.temporal import AttrTemporalValue
 
         value = value or iso8601.utcnow()
