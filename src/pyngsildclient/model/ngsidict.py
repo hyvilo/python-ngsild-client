@@ -186,7 +186,7 @@ class NgsiDict(Cut, MutableMapping):
         observedat: str | datetime | None = None,
         attrname: str | None = None,
         precision: int = 6,
-    ) -> AttrGeoValue:
+    ) -> "AttrGeoValue":
         from pyngsildclient.model.attr.geo import AttrGeoValue
 
         if isinstance(value, tuple):
