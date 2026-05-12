@@ -14,7 +14,7 @@ maintainers = [
   {name = "Hyvilo", email = "dev-services@hyvilo.eu"}
 ]
 classifiers = [
-    "License :: OSI Approved :: Apache 2.0 License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Typing :: Typed",
 ]
