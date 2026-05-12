@@ -1,16 +1,13 @@
 
-# The ngsildclient library
+# The pyngsildclient library
 
 <!--
 [![NGSI-LD badge](https://img.shields.io/badge/NGSI-LD-red.svg)](https://www.etsi.org/deliver/etsi_gs/CIM/001_099/009/01.02.01_60/gs_CIM009v010201p.pdf)
 [![SOF support badge](https://nexus.lab.fiware.org/repository/raw/public/badges/stackoverflow/fiware.svg)](http://stackoverflow.com/questions/tagged/fiware)
 <br>
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Read the Docs](https://img.shields.io/readthedocs/ngsildclient)](https://ngsildclient.readthedocs.io/en/latest/index.html)
 <br>
-[![deploy status](https://github.com/Orange-OpenSource/python-ngsild-client/workflows/CI/badge.svg)](https://github.com/Orange-OpenSource/python-ngsild-client/actions)
-[![PyPI](https://img.shields.io/pypi/v/ngsildclient.svg)](https://pypi.org/project/ngsildclient/)
-[![Python version](https://img.shields.io/pypi/pyversions/ngsildclient)](https://pypi.org/project/ngsildclient/)
+[![deploy status](https://github.com/hyvilo/python-ngsild-client/workflows/CI/badge.svg)](https://github.com/hyvilo/python-ngsild-client/actions)
 -->
 
 ## Overview
@@ -99,13 +96,13 @@ Let's print the JSON-LD payload.
 e.pprint()
 ```
 
-The result is available [here](https://github.com/Orange-OpenSource/python-ngsild-client/blob/master/parking_sample.jsonld).<br>
+The result is available [here](https://github.com/hyvilo/python-ngsild-client/blob/master/parking_sample.jsonld).<br>
 
 
 ### Persist our parking in the Context Broker
 
 The following example assumes that an Orion-LD context broker is running on localhost.<br>
-A docker-compose config [file](https://raw.githubusercontent.com/Orange-OpenSource/python-ngsild-client/master/brokers/orionld/docker-compose-troe.yml) file is provided for that purpose.
+A docker-compose config [file](https://raw.githubusercontent.com/hyvilo/python-ngsild-client/master/brokers/orionld/docker-compose-troe.yml) file is provided for that purpose.
 
 ```python
 from pyngsildclient.api.client import Client
@@ -238,7 +235,7 @@ Make a single list of these parts and save it into a file.
 datamodel = sum(([parking], spots), [])  # flatten lists
 Entity.save_batch(datamodel, "parking_system.jsonld")
 ```
-The result is available [here](https://github.com/Orange-OpenSource/python-ngsild-client/blob/master/parking_system.jsonld).<br>
+The result is available [here](https://github.com/hyvilo/python-ngsild-client/blob/master/parking_system.jsonld).<br>
 Time now to populate our parking system in the broker.
 
 ```python
@@ -286,7 +283,7 @@ The source code is currently hosted on GitHub at :
 https://github.com/Orange-OpenSource/python-ngsild-client
 
 Binary installer for the latest released version is available at the [Python
-package index](https://pypi.org/project/ngsildclient).
+package index](https://pypi.org/project/pyngsildclient).
 
 ## Installation
 
@@ -298,9 +295,9 @@ pip install pyngsildclient
 
 ## Documentation
 
-User guide is available on [Read the Docs](https://ngsildclient.readthedocs.io/en/latest/index.html).
+User guide is available on [Read the Docs](https://pyngsildclient.readthedocs.io/en/latest/index.html).
 
-Refer to the [Cookbook](https://ngsildclient.readthedocs.io/en/latest/cookbook.html) chapter that provides many HOWTOs to :
+Refer to the [Cookbook](https://pyngsildclient.readthedocs.io/en/latest/cookbook.html) chapter that provides many HOWTOs to :
 
 - develop various NGSI-LD Agents collecting data from heterogeneous datasources
 - forge NGSI-LD sample entities from the Smart Data Models initiative
