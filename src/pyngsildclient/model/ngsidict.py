@@ -217,7 +217,7 @@ class NgsiDict(Cut, MutableMapping):
     @classmethod
     def mkrel(
         cls,
-        value: str | list[str] | "Entity" | list["Entity"],
+        value: Union[str, list[str], "Entity", list["Entity"]],
         *,  # keyword-only arguments after this
         datasetid: str | None = None,
         observedat: str | datetime | None = None,
