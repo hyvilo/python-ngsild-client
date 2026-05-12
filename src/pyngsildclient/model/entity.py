@@ -15,7 +15,7 @@ from datetime import datetime
 from functools import partialmethod
 from typing import (
     Any,
-    List,
+    Self,
 )
 
 import aiofiles
@@ -196,12 +196,12 @@ class Entity:
         self._lastwasmulti: bool = False
 
     @dispatch(str, str)
-    def __init__(self, type: str, id: str, *, ctx: List[str] = None):  # noqa F811
+    def __init__(self, type: str, id: str, *, ctx: list[str] = None):  # noqa F811
         id = Entity._build_fully_qualified_id(type, id)
         self.__init__({"id": id, "type": type, "@context": ctx or [CORE_CONTEXT]})
 
     @dispatch(str)
-    def __init__(self, id: str, *, ctx: List[str] = None):  # noqa F811
+    def __init__(self, id: str, *, ctx: list[str] = None):  # noqa F811
         id = Urn.prefix(id)
         urn = Urn(id)
         if (type := urn.infertype()) is None:
@@ -477,12 +477,13 @@ class Entity:
     def tprop(
         self,
         name: str,
-        value: NgsiDate = iso8601.utcnow(),
+        value: NgsiDate | None = None,
         *,  # keyword-only arguments after this
         nested: bool = False,
     ) -> "Entity":
-        property = NgsiDict.mktprop(value)
-        self._update_entity(name, property, nested)
+        value = value or iso8601.utcnow()
+        prop = NgsiDict.mktprop(value)
+        self._update_entity(name, prop, nested)
         return self
 
     obs = partialmethod(tprop, "dateObserved")
@@ -494,7 +495,7 @@ class Entity:
     def rel(
         self,
         name: Rel | str,
-        value: str | list[str] | "Entity" | list["Entity"],
+        value: str | list[str] | Self | list[Self],
         *,  # keyword-only arguments after this
         nested: bool = False,
         observedat: str | datetime = None,
@@ -549,7 +550,7 @@ class Entity:
 
     def pprint(self, *args, pattern: str = None, **kwargs):
         """Pretty-print the entity to the standard ouput."""
-        globalsettings.f_print(self.to_json(indent=2, *args, pattern=pattern, **kwargs))
+        globalsettings.f_print(self.to_json(*args, indent=2, pattern=pattern, **kwargs))
 
     @classmethod
     def load(cls, filename: str):

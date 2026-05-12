@@ -75,9 +75,12 @@ release:
     uv run scripts/release.py
 
 # Lint
-lint:
+lint-fix:
 	uv run ruff check --fix-only --show-fixes ./src ./tests
 	uv run ruff format ./src ./tests
+
+lint-check:
+	uv run ruff check ./src ./tests
 
 # Remove all build, test, coverage and Python artifacts
 clean: clean-build clean-pyc clean-test

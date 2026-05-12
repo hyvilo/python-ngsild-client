@@ -6,8 +6,10 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
+from datetime import datetime
+from typing import TYPE_CHECKING, Any, Literal
 
-from typing import TYPE_CHECKING, Literal
+from .constants import AttrValue, MultAttrValue, NgsiDate, NgsiGeometry
 
 if TYPE_CHECKING:
     from pyngsildclient.model.attr.geo import AttrGeoValue
@@ -20,10 +22,10 @@ import json
 from collections.abc import Mapping, MutableMapping
 from copy import deepcopy
 
+from geojson import Point
 from scalpl import Cut
 
 from ..utils import iso8601, url
-from .constants import *
 
 """
 This module contains the definition of the NgsiDict class.
@@ -137,7 +139,7 @@ class NgsiDict(Cut, MutableMapping):
         """Returns the dict pretty-json-formatted"""
         from pyngsildclient.settings import globalsettings
 
-        globalsettings.f_print(self.to_json(indent=2, *args, **kwargs))
+        globalsettings.f_print(self.to_json(*args, indent=2, **kwargs))
 
     def _save(self, filename: str, indent=2):
         with open(filename, "w") as fp:
@@ -155,7 +157,7 @@ class NgsiDict(Cut, MutableMapping):
         value: Any,
         *,  # keyword-only arguments after this
         datasetid: str = None,
-        observedat: Union[str, datetime] = None,
+        observedat: str | datetime = None,
         unitcode: str = None,
         userdata: "NgsiDict" = None,
         escape: bool = False,
@@ -176,10 +178,10 @@ class NgsiDict(Cut, MutableMapping):
     @classmethod
     def mkgprop(
         cls,
-        value: Union[tuple[float], NgsiGeometry],
+        value: tuple[float] | NgsiGeometry,
         *,  # keyword-only arguments after this
         datasetid: str = None,
-        observedat: Union[str, datetime] = None,
+        observedat: str | datetime | None = None,
         attrname: str = None,
         precision: int = 6,
     ) -> AttrGeoValue:
@@ -198,11 +200,13 @@ class NgsiDict(Cut, MutableMapping):
     @classmethod
     def mktprop(
         cls,
-        value: NgsiDate = iso8601.utcnow(),
+        value: NgsiDate | None = None,
         *,  # keyword-only arguments after this
         attrname: str = None,
     ) -> AttrTemporalValue:
         from pyngsildclient.model.attr.temporal import AttrTemporalValue
+
+        value = value or iso8601.utcnow()
 
         attrvalue = AttrValue(value)
         p = AttrTemporalValue.build(attrvalue)
@@ -211,10 +215,10 @@ class NgsiDict(Cut, MutableMapping):
     @classmethod
     def mkrel(
         cls,
-        value: Union[str, list[str], Entity, list[Entity]],
+        value: str | list[str] | Entity | list[Entity],
         *,  # keyword-only arguments after this
         datasetid: str = None,
-        observedat: Union[str, datetime] = None,
+        observedat: str | datetime | None = None,
         attrname: str = None,
     ) -> AttrRelValue:
         from pyngsildclient.model.attr.rel import AttrRelValue

@@ -20,7 +20,7 @@ References
     ETSI GS CIM 009 V1.4.2, pp. 41-42, 2021-04.
 """
 
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from pyngsildclient.api.constants import TimeProperty
 from pyngsildclient.utils.iso8601 import from_datetime
@@ -44,7 +44,9 @@ class TemporalQuery(dict):
             self["timeproperty"] = timeprop.value
         return self
 
-    def before(self, end: datetime | str = datetime.utcnow(), timeprop: TimeProperty | None = None) -> dict:
+    def before(self, end: datetime | str | None = None, timeprop: TimeProperty | None = None) -> dict:
+        end = end or datetime.now(UTC)
+
         self["timerel"] = "before"
         self["timeAt"] = from_datetime(end) if isinstance(end, datetime) else end
         if timeprop is not None:

@@ -32,7 +32,7 @@ def test_api_create(mocked_connected, requests_mock):
     )
     client = Client()
     res = client.entities.create(sample_entity)
-    assert res == True
+    assert res is True
 
 
 def test_api_create_error_already_exists(mocked_connected, requests_mock):
@@ -101,7 +101,7 @@ def test_api_exists(mocked_connected, requests_mock):
     )
     client = Client()
     res = client._entities.exists("urn:ngsi-ld:AirQualityObserved:RZ:Obsv4567")
-    assert res == True
+    assert res is True
 
 
 def test_api_delete(mocked_connected, requests_mock):
@@ -111,7 +111,7 @@ def test_api_delete(mocked_connected, requests_mock):
     )
     client = Client()
     res = client._entities.delete("urn:ngsi-ld:AirQualityObserved:RZ:Obsv4567")
-    assert res == True
+    assert res is True
 
 
 def test_api_delete_error_not_found(mocked_connected, requests_mock):
@@ -152,7 +152,7 @@ def test_api_upsert_existent_entity(mocked_connected, mocker: MockerFixture):
     res = client._entities.upsert(sample_entity)
     assert mocked_create.call_count == 2
     assert mocked_delete.call_count == 1
-    assert res == True
+    assert res is True
 
 
 def test_api_upsert_nonexistent_entity(mocked_connected, mocker: MockerFixture):
@@ -162,7 +162,7 @@ def test_api_upsert_nonexistent_entity(mocked_connected, mocker: MockerFixture):
     res = client._entities.upsert(sample_entity)
     assert mocked_create.call_count == 1
     assert mocked_delete.call_count == 0
-    assert res == True
+    assert res is True
 
 
 def test_api_update_existent_entity(mocked_connected, mocker: MockerFixture):
@@ -171,7 +171,7 @@ def test_api_update_existent_entity(mocked_connected, mocker: MockerFixture):
     mocker.patch.object(client._entities, "delete", return_value=True)
     mocker.patch.object(client._entities, "create", return_value=True)
     res = client._entities.update(sample_entity)
-    assert res == True
+    assert res is True
 
 
 def test_api_update_nonexistent_entity(mocked_connected, mocker: MockerFixture):

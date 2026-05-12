@@ -60,8 +60,8 @@ def troes_to_dataframe(troes: dict):
     d = _troes_to_dfdict(troes)
     try:
         import pandas
-    except ImportError:
-        raise ValueError("Cannot export to dataframe : pandas not installed.")
+    except ImportError as exc:
+        raise ValueError("Cannot export to dataframe : pandas not installed.") from exc
     return pandas.DataFrame(d)
 
 
@@ -395,9 +395,11 @@ class Temporal:
         pagesize: int = 0,  # default broker pageSize
         pageanchor: str = None,
         count: bool = False,
-        methods: list[AggrMethod] = [AggrMethod.AVERAGE],
+        methods: list[AggrMethod] | None = None,
         period: timedelta = timedelta(days=1),
     ) -> TemporalResult:
+        methods = methods or [AggrMethod.AVERAGE]
+
         params = {}
         if type:
             params["type"] = type

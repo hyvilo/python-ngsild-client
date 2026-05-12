@@ -11,8 +11,29 @@
 This module contains the definition of the Client class.
 """
 
+import logging
 from collections.abc import Callable, Generator
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
+
+from .constants import (
+    ENDPOINT_ALT_QUERY_ENTITIES,
+    ENDPOINT_ALT_QUERY_TEMPORAL,
+    ENDPOINT_BATCH,
+    ENDPOINT_CONTEXTS,
+    ENDPOINT_ENTITIES,
+    ENDPOINT_SUBSCRIPTIONS,
+    ENDPOINT_TEMPORAL,
+    ENDPOINT_TYPES,
+    NGSILD_BASEPATH,
+    NGSILD_DEFAULT_PORT,
+    NGSILD_PATH,
+    PAGINATION_LIMIT_MAX,
+    UA,
+    Vendor,
+    Version,
+)
+from .exceptions import NgsiClientTooManyResultsError, NgsiNotConnectedError, NgsiResourceNotFoundError
 
 if TYPE_CHECKING:
     from pyngsildclient.model.constants import EntityOrId
@@ -21,6 +42,7 @@ from math import ceil
 
 import networkx as nx
 import requests
+from requests import Response
 from requests.auth import AuthBase
 
 from pyngsildclient import __version__
@@ -32,10 +54,8 @@ from ..utils import is_interactive
 from ..utils.urn import Urn
 from .alt import Alt
 from .batch import Batch, BatchResult
-from .constants import *
 from .contexts import Contexts
 from .entities import Entities
-from .exceptions import *
 from .follow import LinkFollower
 from .subscriptions import Subscriptions
 from .temporal import Temporal
@@ -246,7 +266,9 @@ class Client:
                 self.console.print(str(e))
                 return
             if raise_for_disconnected:
-                raise NgsiNotConnectedError(f"Cannot connect to Context Broker at {self.hostname}:{self.port}: {e}")
+                raise NgsiNotConnectedError(
+                    f"Cannot connect to Context Broker at {self.hostname}:{self.port}: {e}"
+                ) from e
             else:
                 logger.error(e)
                 return False

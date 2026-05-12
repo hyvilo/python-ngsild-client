@@ -8,6 +8,7 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 from datetime import date, datetime, time
+from typing import Self
 
 import pyngsildclient.model.ngsidict as ngsidict
 from pyngsildclient.model.constants import AttrType, AttrValue
@@ -39,7 +40,7 @@ class AttrTemporalValue(ngsidict.NgsiDict):
     def build(
         cls,
         attrV: AttrValue,
-    ) -> AttrTemporalValue:
+    ) -> Self:
         property: AttrTemporalValue = cls()
         value = attrV.value
         date_str, temporaltype, _ = iso8601.parse(value)

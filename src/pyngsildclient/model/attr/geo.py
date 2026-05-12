@@ -6,7 +6,7 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
-
+from typing import Self
 
 import geojson
 from geojson import LineString, MultiPoint, Point, Polygon
@@ -44,7 +44,7 @@ class AttrGeoValue(ngsidict.NgsiDict):
     def build(
         cls,
         attrV: AttrValue,
-    ) -> AttrGeoValue:
+    ) -> Self:
         property: AttrGeoValue = cls()
         value = attrV.value
         if isinstance(value, (Point, LineString, Polygon, MultiPoint)):

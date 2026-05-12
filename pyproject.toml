@@ -86,6 +86,10 @@ select = [
     "B",   # flake8-bugbear
     "UP",  # pyupgrade
 ]
+ignore = [
+    "F841",
+    "E501",
+]
 
 [tool.coverage.run]
 branch = true

@@ -8,6 +8,7 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 from dataclasses import dataclass
+from typing import Self
 
 
 @dataclass
@@ -80,27 +81,27 @@ class PostalAddressBuilder:
     def __init__(self):
         self._addr: PostalAddress = PostalAddress()
 
-    def country(self, value: str) -> PostalAddressBuilder:
+    def country(self, value: str) -> Self:
         self._addr.country = value
         return self
 
-    def locality(self, value: str) -> PostalAddressBuilder:
+    def locality(self, value: str) -> Self:
         self._addr.locality = value
         return self
 
-    def region(self, value: str) -> PostalAddressBuilder:
+    def region(self, value: str) -> Self:
         self._addr.region = value
         return self
 
-    def pobox(self, value: str) -> PostalAddressBuilder:
+    def pobox(self, value: str) -> Self:
         self._addr.pobox = value
         return self
 
-    def postalcode(self, value: str) -> PostalAddressBuilder:
+    def postalcode(self, value: str) -> Self:
         self._addr.postalcode = value
         return self
 
-    def street(self, value: str) -> PostalAddressBuilder:
+    def street(self, value: str) -> Self:
         self._addr.streetaddress = value
         return self
 

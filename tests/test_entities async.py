@@ -35,7 +35,7 @@ async def test_api_create(httpx_mock: HTTPXMock):
     )
     client = AsyncClient()
     res = await client.entities.create(sample_entity)
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -111,7 +111,7 @@ async def test_api_exists(httpx_mock: HTTPXMock):
     )
     client = AsyncClient()
     res = await client._entities.exists("urn:ngsi-ld:AirQualityObserved:RZ:Obsv4567")
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -123,7 +123,7 @@ async def test_api_delete(httpx_mock: HTTPXMock):
     )
     client = AsyncClient()
     res = await client._entities.delete("urn:ngsi-ld:AirQualityObserved:RZ:Obsv4567")
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -167,7 +167,7 @@ async def test_api_upsert_existent_entity(mocker: MockerFixture):
     res = await client._entities.upsert(sample_entity)
     assert mocked_create.call_count == 2
     assert mocked_delete.call_count == 1
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -178,7 +178,7 @@ async def test_api_upsert_nonexistent_entity(mocker: MockerFixture):
     res = await client._entities.upsert(sample_entity)
     assert mocked_create.call_count == 1
     assert mocked_delete.call_count == 0
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -188,7 +188,7 @@ async def test_api_update_existent_entity(mocker: MockerFixture):
     mocker.patch.object(client._entities, "delete", return_value=True)
     mocker.patch.object(client._entities, "create", return_value=True)
     res = await client._entities.update(sample_entity)
-    assert res == True
+    assert res is True
 
 
 @pytest.mark.asyncio
@@ -196,4 +196,4 @@ async def test_api_update_nonexistent_entity(mocker: MockerFixture):
     client = AsyncClient()
     mocker.patch.object(client._entities, "exists", return_value=False)
     res = await client._entities.update(sample_entity)
-    assert res == False
+    assert res is False

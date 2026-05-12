@@ -8,6 +8,7 @@
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
 
 import json
+import typing
 from datetime import datetime
 from pathlib import Path
 
@@ -17,6 +18,9 @@ from pytest import fixture
 from pyngsildclient.model.constants import MultAttrValue
 from pyngsildclient.model.entity import Entity, mkgprop, mkprop, mkrel, mktprop
 from pyngsildclient.model.helper.postal import PostalAddressBuilder
+
+if typing.TYPE_CHECKING:
+    from pyngsildclient.model.ngsidict import NgsiDict
 
 
 def expected_dict(basename: str) -> dict:

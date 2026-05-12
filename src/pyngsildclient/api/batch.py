@@ -9,7 +9,7 @@
 
 from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Literal, Self
 
 if TYPE_CHECKING:
     from pyngsildclient.model.constants import EntityOrId
@@ -75,7 +75,7 @@ class BatchResult:
     def __repr__(self):
         return f"op: {self.op}, success: {self.n_ok}, errors: {self.n_err}"
 
-    def __iadd__(self, r: BatchResult):
+    def __iadd__(self, r: Self):
         self.success.extend(r.success)
         self.errors.extend(r.errors)
         return self

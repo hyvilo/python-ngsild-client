@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-from pathlib import Path
-
 # Software Name: ngsildclient
 # SPDX-FileCopyrightText: Copyright (c) 2021 Orange
 # SPDX-License-Identifier: Apache 2.0
@@ -9,7 +6,10 @@ from pathlib import Path
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
-from pyngsildclient.model.entity import *
+import json
+from pathlib import Path
+
+from pyngsildclient.model.entity import Entity
 from pyngsildclient.model.helper.postal import PostalAddressBuilder
 
 

@@ -6,15 +6,15 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
-
-from typing import Any
+from datetime import datetime
+from typing import Any, Self
 
 import pyngsildclient
 from pyngsildclient.model.utils import iso8601, process_observedat
 
 from ...utils.urn import Urn
-from ..constants import *
-from ..exceptions import *
+from ..constants import META_ATTR_DATASET_ID, META_ATTR_OBSERVED_AT, META_ATTR_UNITCODE, AttrType, AttrValue
+from ..exceptions import NgsiUnmatchedAttributeTypeError
 
 
 class AttrPropValue(pyngsildclient.model.ngsidict.NgsiDict):
@@ -65,7 +65,7 @@ class AttrPropValue(pyngsildclient.model.ngsidict.NgsiDict):
     def build(
         cls,
         attrV: AttrValue,
-    ) -> AttrPropValue:
+    ) -> Self:
         property: AttrPropValue = cls()
         value = attrV.value
         if isinstance(value, (int, float, bool, str, list, dict)):

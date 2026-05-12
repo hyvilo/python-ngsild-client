@@ -6,13 +6,16 @@
 # see the NOTICE file for more details.
 #
 # Author: Fabien BATTELLO <fabien.battello@orange.com> et al.
+from collections.abc import Sequence
+from datetime import datetime
+from typing import Self
 
 import pyngsildclient
 from pyngsildclient.model.utils import iso8601, process_observedat
 
 from ...utils.urn import Urn
-from ..constants import *
-from ..exceptions import *
+from ..constants import META_ATTR_DATASET_ID, META_ATTR_OBSERVED_AT, AttrType, AttrValue
+from ..exceptions import NgsiUnmatchedAttributeTypeError
 
 
 class AttrRelValue(pyngsildclient.model.ngsidict.NgsiDict):
@@ -55,7 +58,7 @@ class AttrRelValue(pyngsildclient.model.ngsidict.NgsiDict):
     def build(
         cls,
         attrV: AttrValue,
-    ) -> AttrRelValue:
+    ) -> Self:
         property: AttrRelValue = cls()
         value = attrV.value
         if isinstance(value, str):

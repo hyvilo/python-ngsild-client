@@ -22,7 +22,6 @@ from enum import Enum
 from typing import (
     TYPE_CHECKING,
     Any,
-    Union,
 )
 
 from dateutil import tz
@@ -35,23 +34,21 @@ from geojson import (
 if TYPE_CHECKING:
     import pyngsildclient.model.entity as entity
 
-    EntityOrId = Union[str, entity.Entity]
-    OneOrManyEntities = Union[
-        entity.Entity,
-        Sequence[entity.Entity],
-    ]
+    EntityOrId = str | entity.Entity
+    OneOrManyEntities = entity.Entity | Sequence[entity.Entity]
+
 
 LD_PREFIX = "urn:ngsi-ld"
 
-NgsiLocation = Union[tuple[int, int], Point]
+NgsiLocation = tuple[int, int] | Point
 """A user type : either a tuple of two ints (lat, lon) or a GeoJson Point.
 """
 
-NgsiGeometry = Union[NgsiLocation, LineString, Polygon]
+NgsiGeometry = NgsiLocation | LineString, Polygon
 """A user type : Valid Geometries types for a NGSI-LD GeoProperty.
 """
 
-NgsiDate = Union[str, datetime, date, time]
+NgsiDate = str | datetime | date | time
 """A user type : Valid Date types for a NGSI-LD TemporalProperty.
 """
 
@@ -90,8 +87,9 @@ class MultAttrValue(Iterable[AttrValue]):
         datasetid: str = None,
         observedat: str | datetime = None,
         unitcode: str = None,
-        userdata: dict = {},
+        userdata: dict | None = None,
     ):
+        userdata = userdata or dict()
         if hasattr(value, "id"):
             value = value.id
         attrvalue = AttrValue(value)
